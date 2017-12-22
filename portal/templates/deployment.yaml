@@ -26,6 +26,7 @@ spec:
       - name: {{ .Chart.Name }}
         image: '{{ .Values.image.repository }}:{{ .Values.image.tag }}'
         command: ["/bin/bash","-c","./setup_backend_host.sh && nginx -g 'daemon off;'"]
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
         env:
         - name: "BACKEND_HOST"
           value: {{ .Release.Name }}-backend
