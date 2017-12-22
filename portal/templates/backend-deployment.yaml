@@ -26,7 +26,7 @@ spec:
       - name: backend
         image: '{{ .Values.backend.image.repo }}:{{ .Values.backend.image.tag }}'
         imagePullPolicy: {{ .Values.imagePullPolicy }}
-        command: ["/bin/bash","-c","./setup_connection.sh && propel sql:build --config-dir schema --schema-dir schema && propel config:convert --config-dir schema --output-dir schema/generated-conf && propel sql:insert --config-dir schema && php -S 0.0.0.0:{{ .Values.backend.port }} -t public public/index.php"]
+        command: ["/bin/bash","-c","./setup_connection.sh && propel sql:build --config-dir schema --schema-dir schema && propel config:convert --config-dir schema --output-dir schema/generated-conf && propel sql:insert --config-dir schema && php -S 0.0.0.0:{{ .Values.backend.port }} -t public index.php"]
         env:
             - name: "MYSQL_DATABASE"
               value: {{ .Values.mysql.mysqlDatabase }}
