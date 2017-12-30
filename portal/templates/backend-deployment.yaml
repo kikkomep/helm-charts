@@ -36,5 +36,9 @@ spec:
               value: {{ .Values.mysql.mysqlPassword }}
             - name: "MYSQL_HOST"
               value: "{{ .Release.Name }}-mysql"
+            - name: "GALAXY_URL"
+              value: {{ .Values.galaxy_url }}
+            - name: "GALAXY_API_KEY"
+              value: {{ .Values.galaxy_api_key }}
         ports:
         - containerPort: {{ .Values.backend.port }}
