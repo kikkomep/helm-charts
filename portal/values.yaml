@@ -8,12 +8,16 @@
 # To avoid using persistence on a cluster installation
 # helm install --set mysql.persistence.enabled=false phenomenal/portal
 #
+
+# global settings
 replicaCount: 1
 tsi_portal_url: "https://api.portal.tsi.ebi.ac.uk/"
 aap_url: "https://api.aai.ebi.ac.uk/"
 cloud_deploy_git_repo: "https://github.com/andersla/cloud-deploy-kubenow.git"
 imagePullPolicy: "Always"
-deployment:
+
+# frontend settings
+frontend:
   name: phenomenal-portal
   image:
     repository: container-registry.phenomenal-h2020.eu/phnmnl/phenomenal-portal
@@ -30,16 +34,23 @@ deployment:
     requests:
       cpu: 100m
       memory: 128Mi
+
+# mysql settings
 mysql:
   mysqlRootPassword: "backend"
   mysqlUser: "backend-user"
   mysqlPassword: "htgcsak"
   mysqlDatabase: "phenomenal"
-backend:
+
+# metadata backend settings
+metadata:
+  name: phenomenal-portal-metadata
   image: 
      repository: container-registry.phenomenal-h2020.eu/phnmnl/portal-metadata-backend
      tag: latest
   port: 8888
+
+# app library settings
 app_library:
   replicaCount: 1
   branch: master
@@ -58,6 +69,8 @@ app_library:
     requests:
       cpu: 100m
       memory: 128Mi
+
+# wiki backend settings
 wiki:
   replicaCount: 1
   deployment:
