@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: {{ .Values.deployment.name }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.deployment.service.type }}
   ports:
-  - name: {{ .Values.service.name }}
-    nodePort: {{ .Values.service.externalPort }}
-    port: {{ .Values.service.internalPort }}
+  - name: {{ .Values.deployment.service.name }}
+    nodePort: {{ .Values.deployment.service.externalPort }}
+    port: {{ .Values.deployment.service.internalPort }}
   selector:
     app: {{ .Values.deployment.name }}

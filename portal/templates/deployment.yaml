@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: {{ .Chart.Name }}
-        image: '{{ .Values.image.repository }}:{{ .Values.image.tag }}'
+        image: '{{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}'
         command: ["/bin/bash","-c","./setup_backend_host.sh && nginx -g 'daemon off;'"]
         imagePullPolicy: {{ .Values.imagePullPolicy }}
         env:
@@ -49,6 +49,6 @@ spec:
         - name: "CLOUD_DEPLOY_GIT_REPO"
           value: {{ .Values.cloud_deploy_git_repo }}
         ports:
-        - containerPort: {{ .Values.service.internalPort }}
+        - containerPort: {{ .Values.deployment.service.internalPort }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
