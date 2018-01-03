@@ -1,13 +1,13 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-backend
+  name: {{ .Release.Name }}-metadata
 spec:
   replicas: 1
   template: 
     metadata:
       labels:
-         app: {{ .Release.Name }}-backend
+         app: {{ .Release.Name }}-metadata
       annotations:
         pod.beta.kubernetes.io/init-containers: |-
           [
@@ -23,10 +23,10 @@ spec:
           ]
     spec:
       containers:
-      - name: backend
-        image: '{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}'
+      - name: metadata
+        image: '{{ .Values.metadata.image.repository }}:{{ .Values.metadata.image.tag }}'
         imagePullPolicy: {{ .Values.imagePullPolicy }}
-        command: ["entrypoint.sh", "{{ .Values.backend.port }}"]
+        command: ["entrypoint.sh", "{{ .Values.metadata.port }}"]
         env:
             - name: "MYSQL_DATABASE"
               value: {{ .Values.mysql.mysqlDatabase }}
@@ -41,4 +41,4 @@ spec:
             - name: "GALAXY_API_KEY"
               value: {{ .Values.galaxy_api_key }}
         ports:
-        - containerPort: {{ .Values.backend.port }}
+        - containerPort: {{ .Values.metadata.port }}
