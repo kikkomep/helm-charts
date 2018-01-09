@@ -26,6 +26,7 @@ spec:
       - name: metadata
         image: '{{ .Values.metadata.image.repository }}:{{ .Values.metadata.image.tag }}'
         imagePullPolicy: {{ .Values.imagePullPolicy }}
+        # The 'entrypoint.sh' is available since the version '1.0.0' of the Metadata backend container
         command: ["entrypoint.sh", "{{ .Values.metadata.port }}"]
         env:
             - name: "MYSQL_DATABASE"
