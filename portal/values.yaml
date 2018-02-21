@@ -28,7 +28,7 @@ frontend:
   service:
     name: http
     type: NodePort
-    externalPort: 30766
+    externalPort: 30767
     internalPort: 80
   resources:
     limits:
