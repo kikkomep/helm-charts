@@ -17,6 +17,7 @@ cloud_deploy_git_repo: "https://github.com/andersla/cloud-deploy-kubenow.git"
 imagePullPolicy: "Always"
 galaxy_url: "https://public.phenomenal-h2020.eu"
 galaxy_api_key: ""
+enable_https: "true"
 
 # frontend settings
 frontend:
